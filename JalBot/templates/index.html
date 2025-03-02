@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/static/styles.css"> -->
+     <style>
+        /* General Layout */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #a2d9ff, #82c6f1);
+    animation: wave 5s infinite;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Wave Animation */
+@keyframes wave {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 20px; }
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 20%;
+    background-color: rgb(52, 81, 107);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-header {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sidebar-options {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-options li {
+    margin: 15px 0;
+}
+
+.sidebar-options li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.sidebar-options li a:hover {
+    background-color: #007bb8;
+}
+
+.sidebar-footer {
+    text-align: center;
+    margin-top: auto;
+}
+
+.sidebar-footer a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+/* Main Content */
+.main {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Bar */
+.top-bar {
+    
+    color: rgb(57, 105, 194);
+    padding: 15px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #B0C4DE ;
+}
+
+/* Chat Area */
+.chat-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    margin: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-area {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Chat Messages */
+.chat-message {
+    max-width: 70%;
+    padding: 12px 20px;
+    border-radius: 20px;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+.chat-message.user {
+    align-self: flex-end;
+    background-color: #d0f4f4;
+    color: #007bb8;
+}
+
+.chat-message.bot {
+    align-self: flex-start;
+    background-color: #f4f4d0;
+    color: #4a4a00;
+}
+
+/* Input Area */
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.chat-input-area textarea {
+    flex-grow: 1;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    outline: none;
+}
+
+.chat-input-area textarea:focus {
+    border-color: #007bb8;
+}
+
+.chat-input-area button {
+    margin-left: 10px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007bb8;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.chat-input-area button:hover {
+    background-color: #005e80;
+}
+
+     </style>
+    <title>Multi-Language Chatbot</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>🌊 JalBot</h2>
+            </div>
+            <ul class="sidebar-options">
+                <li><a href="#" id="new-chat">💧 New Chat</a></li>
+                <li><a href="#">⚙ Settings</a></li>
+                <li><a href="#">❓ Help & FAQ</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#">🔒 Log Out</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <h1>🌊 JalBot Chat</h1>
+            </div>
+
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <label for="language">Choose language:</label>
+                <select id="language" name="language">
+                    <option value="en-US">English</option>
+                    <option value="es-ES">Spanish</option>
+                    <option value="fr-FR">French</option>
+                    <option value="hi-IN">Hindi</option>
+                    <option value="ta-IN">Tamil</option>
+                    <option value="kn-IN">Kannada</option>
+                </select>
+            </div>
+
+            <!-- Virtual Keyboard -->
+            <div class="keyboard-container">
+                <div id="keyboard" class="keyboard"></div>
+            </div>
+
+            <!-- Chat Area -->
+            <div class="chat-container">
+                <div class="chat-area" id="chat-area"></div>
+                <div class="chat-input-area">
+                    <textarea id="user-input" placeholder="Type your message..." rows="1"></textarea>
+                    <button id="send-btn">💬 Send</button>
+                    <button id="voice-btn">🎙 Speak</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/scripts.js"></script>
+</body>
+</html>

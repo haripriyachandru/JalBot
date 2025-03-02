@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JalBot</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- CSS Stylesheet -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+     <style>
+        /* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: aliceblue;
+    color: #2d3436;
+}
+
+/* Navigation Menu Styling */
+.top-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.top-nav ul li a{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color:whitesmoke ; /* Dark Navy Blue */
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.top-nav ul li a:hover {
+    background-color: slategray; /* Coral Red */
+    transform: scale(1.1);
+}
+
+/* Header Styling */
+header {
+    background-color: lightskyblue;
+    padding: 20px 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 60px;
+}
+
+.title-section {
+    text-align: center;
+}
+
+.title-section h1 {
+    font-size: xx-large;
+    color:black; /* Dark Navy Blue */
+}
+
+.title-section p {
+    font-size: medium;
+    color: black; /* Soft Grey-Blue */
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Chatbot Container */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* History Section */
+.history-section {
+    background-color: #f0f8ff; /* Light blue background */
+    padding: 30px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    margin-top: 20px;
+}
+
+.history-section h2 {
+    color: #007BFF; /* Blue color for the heading */
+    font-size: 28px; /* Larger font size for heading */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.history-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.history-text {
+    color: #333; /* Dark text for readability */
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: 'Arial', sans-serif;
+    text-align: justify;
+    background-color: #e6f2ff; /* Slightly darker blue background for text */
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 4px solid #007BFF; /* Blue left border for emphasis */
+    max-height: 300px; /* Set a fixed height */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+}
+
+.history-text p {
+    margin: 0; /* Remove extra margin between paragraphs */
+}
+
+.history-text p br {
+    margin-bottom: 10px; /* Adds spacing after <br> tags */
+}
+
+
+.info-container {
+    display: flex;
+    justify-content: center; /* Centers the info boxes horizontally */
+    gap: 20px;
+    flex-wrap: wrap; /* Allows wrapping for responsiveness */
+    margin-top: 40px;
+}
+
+.info-box {
+    background-color: #f0f8ff; /* Light blue background */
+    border: 2px solid #007BFF; /* Blue border */
+    border-radius: 8px;
+    padding: 20px;
+    width: 30%; /* Each box takes up 30% of the container width */
+    max-height: 250px; /* Fixed height for scrollability */
+    overflow-y: auto; /* Enables vertical scrolling */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.info-box h3 {
+    color: #007BFF; /* Blue heading */
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.info-box p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .info-box {
+        width: 45%; /* Two boxes per row on medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .info-box {
+        width: 100%; /* Stacks boxes on small screens */
+    }
+}
+
+
+/* Dropdown Button Styling */
+.dropdown .dropbtn {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: whitesmoke; /* Matching the other nav links */
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Dropdown Content Styling */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: whitesmoke;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Dropdown Links Styling */
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover Effects */
+.dropdown:hover .dropbtn,
+.dropdown-content a:hover {
+    background-color: slategray; /* Matching the hover color of other nav links */
+    transform: scale(1.1);
+}
+
+/* Show Dropdown Content on Hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.btn {
+    background-color: lightskyblue; /* Blue color */
+    color: black; /* White text */
+    padding: 10px 20px; /* Padding for size */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Text size */
+    font-weight: bold; /* Bold text */
+    text-decoration: none; /* Remove underline for links */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    margin-top: 20px
+}
+
+/* Hover Effect */
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Footer */
+footer {
+    background-color: lightskyblue; /* Dark Grey */
+    color: black;
+    padding: 20px 40px;
+    text-align: center;
+}
+
+.social-media {
+    margin-top: 10px;
+}
+
+.social-media a {
+    color: black;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-media a:hover {
+    color: #f46a6a; /* Coral Red for Hover */
+}
+
+     </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="title-section">
+                <h1>Jal Shakti</h1>
+                <p>AI based chatbot for collating and dissemination of information on groundwater.
+                </p>
+            </div>
+            <nav class="top-nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="info.html">Objective</a></li>
+                    <li><a href="map.html">Map</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                        <div class="dropdown">
+                            <button class="dropbtn">Language
+                              <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                              <a href="1hindi.html">Hindi</a>
+                            </div>
+                          </div> 
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="TEAM.png" alt="Museum Image" class="hero-image">
+        <div class="hero-content">
+            <h2>AI based chatbot for collating and dissemination of information on groundwater.</h2>
+            <br>
+            <!--<p>Explore India's rich history and culture through our exhibits.</p>-->
+            <a href="templates/index.html" class="btn">Try now !</a>
+        </div>
+    </section>
+    
+    
+
+    <!-- Chatbot Integration 
+    <div class="chatbot-container">
+        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+        <df-messenger
+          chat-icon="https://i.imgur.com/5oLB9Hv.png"
+          intent="WELCOME"
+          chat-title="MuseBot"
+          agent-id="1ee94ffd-8bff-4854-a830-5241e8082b3e"
+          language-code="en"
+        ></df-messenger>
+    </div>-->
+
+    <!-- History Section 
+    <section class="history-section">
+        <h2>Description</h2>
+        <div class="history-content">
+            <div class="history-text">
+                <p>The Chatbot should be able to answer queries related to - water level scenario, hydrogeological scenario, water quality, available reports for an area. Additionally it should generate a comprehensive report of the Aol on - Ground Water Resource Assessment, Categorization of the area, GW management practices to be adopted, Conditions for obtaining NOC for ground water extraction, guidance on how to obtain NOC, definition of groundwater terms, training opportunities related to ground water etc.</p>
+               <br>
+            </div>
+    </section>-->
+
+    <div class="info-container">
+        <div class="info-box">
+            <h3>Description</h3>
+            <p>The Chatbot answers queries related to - water level scenario, hydrogeological scenario, water quality, available reports for an area. Additionally it generates a comprehensive report of the Aol on - Ground Water Resource Assessment, Categorization of the area, GW management practices to be adopted, Conditions for obtaining NOC for ground water extraction, guidance on how to obtain NOC, definition of groundwater terms, training opportunities related to ground water etc.</p>
+        </div>
+        <div class="info-box">
+            <h3>Highlights</h3>
+            <p>
+                ✓ Provides precise, personalized groundwater reports using  AI analytics.
+                <br>
+                ✓ Multilingual Support ensures accessibility for users from diverse regions, making it easy to use for everyone.
+                <br>
+                ✓ Providing voice based search to capture and process user queries via voice for seamless interaction.
+            </p>
+        </div>
+        <div class="info-box">
+            <h3>Objective</h3>
+            <p>✓ Aligned to Sustainable Development Goals(SDG):
+                <br>
+                Goal 6:Clean water and sanitation
+                <br>
+                SDG 6 is to: "Ensure availability and sustainable management of water and sanitation for all.The Joint Monitoring Programme (JMP) of WHO and UNICEF is responsible for monitoring progress to achieve the first two targets of this goal. Important indicators for this goal are the percentages of the population that uses safely managed drinking water, and has access to safely managed sanitation. The JMP reported in 2017 that 4.5 billion people do not have safely managed sanitation.Another indicator looks at the proportion of domestic and industrial wastewater that is safely treated.
+            </p>
+        </div>
+    </div>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 TEAM CONVOCODERS_24</p>
+            <div class="social-media">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/static/script.js"></script>
+</body>
+</html>
