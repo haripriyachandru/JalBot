@@ -2,7 +2,7 @@ SIH'24 Finale Project- JalBot
 
 Problem Statement by Ministry of Jal Shakti
 
-FEATURES:
+FEATURES
 
 •	SEAMLESS INTERACTION: Users engage through our interactive JalBot to easily access tailored groundwater information and reports by asking their queries.
 
