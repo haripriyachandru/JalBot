@@ -17,6 +17,5 @@ FEATURES:
 •	REPORT GENERATION: Generate report based on the user query for groundwater level management.
 
 TECHNICAL OVERVIEW:
-
 ![image](https://github.com/user-attachments/assets/e32f8958-285d-487d-96a1-3ed7fa9ca3a8)
 
